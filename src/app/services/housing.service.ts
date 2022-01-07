@@ -11,7 +11,7 @@ export class HousingService {
 
   constructor(private http: HttpClient) { }
 
-  getAllProperties(): Observable<IProperty[]>
+  getAllProperties(sellRent:number): Observable<IProperty[]>
   {
 
       // return this.http.get('data/properties.json').pipe(
@@ -27,7 +27,9 @@ export class HousingService {
           const propertiesArray: Array<IProperty>=[];
           for(const id in data)
           {
-            if(data.hasOwnProperty(id))
+            // Add only the data in the array matching the sell or rent value during the call from sell
+            // or buy page
+            if(data.hasOwnProperty(id) && data[id].SellRent==sellRent)
             {
               propertiesArray.push(data[id]);
             }

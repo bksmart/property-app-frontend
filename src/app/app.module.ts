@@ -9,12 +9,23 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HousingService } from './services/housing.service';
 import { AddPropertyComponent } from './property/add-property/add-property.component';
 import { PropertyDetailsComponent } from './property/property-details/property-details.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserRegistrationComponent } from './user/user-registration/UserRegistration/UserRegistration.component';
+import { UserLoginComponent } from './user/user-login/UserLogin/UserLogin.component';
+import { UserService } from './services/user.service';
+import { AlertifyService } from './services/alertify.service';
+import { AuthService } from './services/Auth.service';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes:Routes=[
    { path:'', component:PropertyListComponent},
    { path:'rent-property' ,component:PropertyListComponent},
    { path:'add-property' ,component:AddPropertyComponent},
-   { path:'property-details/:Id',component:PropertyDetailsComponent}
+   { path:'property-details/:Id',component:PropertyDetailsComponent},
+   {path:'user/login',component:UserLoginComponent},
+   {path:'user/register',component:UserRegistrationComponent},
+   { path:'**',component:PropertyListComponent}
 ]
 
 @NgModule({
@@ -24,16 +35,25 @@ const appRoutes:Routes=[
     PropertyListComponent,
       NavBarComponent,
       AddPropertyComponent,
-      PropertyDetailsComponent
+      PropertyDetailsComponent,
+      UserRegistrationComponent,
+      UserLoginComponent
    ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule,
-    RouterModule.forRoot(appRoutes)
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes),
+    BsDropdownModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [
-    HousingService
+    HousingService,
+    UserService,
+    AlertifyService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

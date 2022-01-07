@@ -19,6 +19,10 @@
     "strictPropertyInitialization": false,
     "suppressImplicitAnyIndexErrors":true,
     "target": "es2017",
+    "typeRoots": [
+      "node_modules/@types",
+      "src/alertifytype.d.ts"
+    ],
     "module": "es2020",
     "lib": [
       "es2020",
